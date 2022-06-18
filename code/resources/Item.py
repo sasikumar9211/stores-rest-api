@@ -24,7 +24,7 @@ class Item(Resource):
         
         isItemExists = ItemModel.find_by_item_name(name)
         data = Item.parser.parse_args()
-        if isItemExists.name == name and isItemExists.store_id == data['store_id']:
+        if isItemExists:
             return {"message":"Item with name '{}' already exists in the same store id {}".format(name,data['store_id'])},400
 
         item = ItemModel(name,data['price'],data['store_id'])
